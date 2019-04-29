@@ -1,8 +1,7 @@
-//answer.js
+// pages/detail/detail.js
 var common = require('../../utils/common.js')
 const db = wx.cloud.database()
-const ans = db.collection('share')
-
+const news = db.collection('share')
 Page({
 
   /**
@@ -10,7 +9,7 @@ Page({
    */
   data: {
     article: {},
-    num: 0
+    num:0
   },
 
   /**
@@ -31,7 +30,7 @@ Page({
     //不存在
     else {
       this.setData({ isAdd: false })
-      ans.doc(options.id).get({
+      news.doc(options.id).get({
         success: res => {
           this.setData({ article: res.data })
         }
@@ -50,14 +49,7 @@ Page({
     let article = this.data.article; //获取当前新闻
     wx.removeStorageSync(article.question_id); //从本地缓存删除
     this.setData({ isAdd: false }); //更新按钮显示
-  },
-
-  /**
-  * 自定义函数-跳转到问题详情
-  */
-  goToQuestion: function (e) {
-    common.goToQuestion(e.currentTarget.dataset.id)
-  },
+  }, 
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -87,6 +79,19 @@ Page({
 
   },
 
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
 
   /**
    * 用户点击右上角分享

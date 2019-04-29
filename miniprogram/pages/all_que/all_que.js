@@ -1,4 +1,4 @@
-// pages/me/me.js
+// pages/all_que/all_que.js
 Page({
 
   /**
@@ -11,20 +11,26 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
 
+  },
+  
   // 获取用户信息
-  getMyInfo: function(e) {
+  getMyInfo: function (e) {
     let info = e.detail.userInfo;
     this.setData({
       isLogin: true, //确认登陆状态
@@ -33,5 +39,4 @@ Page({
     })
 
   }
-
 })

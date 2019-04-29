@@ -10,33 +10,29 @@
       </view>
   </view>
 
-    <block wx:for="{{feed}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+    <view wx:for="{{newsList}}" wx:for-item="news" wx:key="{{news.id}}">
         <view class="feed-item">
             <view class="feed-source">
-                <a class="">
                     <view class="avatar">
-                        <image src="{{item.feed_source_img}}"></image>
+                        <image src="{{news.feed_source_img}}"></image>
                     </view>
-                    <text>{{item.feed_source_name}}{{item.feed_source_txt}}</text>
-                </a>
+                    <text>{{news.feed_source_name}}{{news.feed_source_txt}}</text>
                 <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
             </view>
             <view class="feed-content">
-                <view class="question" qid="{{question_id}}" bindtap="bindQueTap">
-                    <a class="question-link">
-                        <text>{{item.question}}</text>
-                    </a>
+                <view class="question"  bindtap="goToQuestion" data-id='{{news.question_id}}'>
+                        <text>{{news.question}}</text>
                 </view>
-                <view class="answer-body">
-                    <view bindtap="bindItemTap">
-                        <text class="answer-txt" aid="{{answer_id}}">{{item.answer_ctnt}}</text>
+                <view class="answer-body" bindtap='goToAnswer' data-id='{{news._id}}'>
+                    <view>
+                        <text class="answer-txt">{{news.answer_ctnt}}</text>
                     </view>
-                    <view class="answer-actions" bindtap="bindItemTap">
+                    <view class="answer-actions">
                         <view class="like dot">
-                            <a>{{item.good_num}} 赞同 </a>
+                            <a>{{news.good_num}} 赞同 </a>
                         </view>
                         <view class="comments dot">
-                            <a>{{item.comment_num}} 评论 </a>
+                            <a>{{news.comment_num}} 评论 </a>
                         </view>
                         <view class="follow-it">
                             <a>关注问题</a>
@@ -45,5 +41,5 @@
                 </view>
             </view>
         </view>
-    </block>
+    </view>
 </scroll-view>

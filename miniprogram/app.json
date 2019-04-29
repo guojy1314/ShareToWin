@@ -1,16 +1,17 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/notify/notify",
     "pages/chat/chat",
     "pages/me/me",
     "pages/answer/answer",
-    "pages/question/question"
+    "pages/question/question",
+    "pages/all_que/all_que",
+    "pages/source/source"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#0068C4",
-    "navigationBarTitleText": "知乎",
+    "navigationBarTitleText": "分享为赢",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true
   },
@@ -27,13 +28,13 @@
         "selectedIconPath": "images/discovery_focus.png"
       },
       {
-        "pagePath": "pages/notify/notify",
+        "pagePath": "pages/all_que/all_que",
         "text": "提问",
-        "iconPath": "images/chat.png",
-        "selectedIconPath": "images/chat_focus.png"
+        "iconPath": "images/que.png",
+        "selectedIconPath": "images/que_focus.png"
       },
       {
-        "pagePath": "pages/chat/chat",
+        "pagePath": "pages/source/source",
         "text": "资源",
         "iconPath": "images/source.png",
         "selectedIconPath": "images/source_focus.png"

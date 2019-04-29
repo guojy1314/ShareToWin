@@ -1,3 +1,4 @@
 {
-  "usingComponents": {}
+    "navigationBarTitleText": "问题",
+    "onReachBottomDistance": 100
 }

@@ -1,0 +1,15 @@
+<!--pages/all_que/all_que.wxml-->
+<view class="container more">
+  <view class="user flex-wrp" id='myLogin'>
+    <block wx:if='{{isLogin}}'>
+      <view class="avatar flex-item">
+        <image class="userinfo-avatar" src="{{src}}" background-size="cover"></image>
+      </view>
+      <view class="user-info flex-item">
+        <text class="userinfo-nickname">{{nickName}}</text>
+        <text class="edit">查看我的提问</text>
+      </view>
+    </block>
+    <button wx:else open-type='getUserInfo' bindgetuserinfo='getMyInfo'>未登录，请点此登陆</button>
+  </view>
+</view>
