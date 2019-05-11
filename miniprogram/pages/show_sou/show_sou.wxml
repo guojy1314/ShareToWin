@@ -1,0 +1,3 @@
+<!--miniprogram/pages/show_sou/show_sou.wxml-->
+<text>miniprogram/pages/show_sou/show_sou.wxml</text>
+<view style="text-align:center"> {{title}} </view>

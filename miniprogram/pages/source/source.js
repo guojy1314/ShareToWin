@@ -5,6 +5,62 @@ Page({
    * 页面的初始数据
    */
   data: {
+    routers: [
+      {
+        name: '资源1',
+        url: '../show_sou/show_sou',
+        icon: '../../images/classify.png',
+        code: '1'
+      },
+      {
+        name: '资源2',
+        url: '../show_sou/show_sou',
+        icon: '../../images/classify.png',
+        code: '2'
+      },
+      {
+        name: '资源3',
+        url: '../show_sou/show_sou',
+        icon: '../../images/classify.png',
+        code: '3'
+      },
+      {
+        name: '资源4',
+        url: '../show_sou/show_sou',
+        icon: '../../images/classify.png',
+        code: '4'
+      },
+      {
+        name: '资源5',
+        url: '../show_sou/show_sou',
+        icon: '../../images/classify.png',
+        code: '5'
+      },
+      {
+        name: '资源6',
+        url: '../show_sou/show_sou',
+        icon: '../../images/classify.png',
+        code: '6'
+      },
+      {
+        name: '资源7',
+        url: '../show_sou/show_sou',
+        icon: '../../images/classify.png',
+        code: '7'
+      },
+      {
+        name: '资源8',
+        url: '../show_sou/show_sou',
+        icon: '../../images/classify.png',
+        code: '8'
+      },
+      {
+        name: '资源9',
+        url: '../show_sou/show_sou',
+        icon: '../../images/classify.png',
+        code: '9'
+      }
+    ]
 
   },
 

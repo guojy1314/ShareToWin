@@ -1,13 +1,15 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/index/index", 
     "pages/me/me",
     "pages/answer/answer",
     "pages/question/question",
     "pages/all_que/all_que",
     "pages/source/source",
     "pages/ask_que/ask_que",
-    "pages/upload_source/upload_source"
+    "pages/upload_source/upload_source",
+    "pages/show_que/show_que",
+    "pages/show_sou/show_sou"
   ],
   "window": {
     "backgroundTextStyle": "light",

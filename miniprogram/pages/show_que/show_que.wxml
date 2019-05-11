@@ -1,0 +1,3 @@
+<!--miniprogram/pages/show_que/show_que.wxml-->
+<text>miniprogram/pages/show_que/show_que.wxml</text>
+<view style="text-align:center"> {{title}} </view>

@@ -11,62 +11,19 @@
   </view>
 
   <!-- 9个按钮  -->
-  <view class='class_view_panel'>
-    <navigator class="class_nav top">
-      <view class='class_pic'>
-        <image src='../../images/classify.png'></image>
-      </view>
-      <text>资源</text>
-    </navigator>
-
-    <navigator class="class_nav top">
-      <view class='class_pic'>
-        <image src='../../images/classify.png'></image>
-      </view>
-      <text>资源</text>
-    </navigator>
-    <navigator class="class_nav top">
-      <view class='class_pic'>
-        <image src='../../images/classify.png'></image>
-      </view>
-      <text>资源</text>
-    </navigator>
-    <navigator class="class_nav top">
-      <view class='class_pic'>
-        <image src='../../images/classify.png'></image>
-      </view>
-      <text>资源</text>
-    </navigator>
-    <navigator class="class_nav top">
-      <view class='class_pic'>
-        <image src='../../images/classify.png'></image>
-      </view>
-      <text>资源</text>
-    </navigator>
-    <navigator class="class_nav top">
-      <view class='class_pic'>
-        <image src='../../images/classify.png'></image>
-      </view>
-      <text>资源</text>
-    </navigator>
-    <navigator class="class_nav top">
-      <view class='class_pic'>
-        <image src='../../images/classify.png'></image>
-      </view>
-      <text>资源</text>
-    </navigator>
-    <navigator class="class_nav top">
-      <view class='class_pic'>
-        <image src='../../images/classify.png'></image>
-      </view>
-      <text>资源</text>
-    </navigator>
-    <navigator class="class_nav top">
-      <view class='class_pic'>
-        <image src='../../images/classify.png'></image>
-      </view>
-      <text>资源</text>
-    </navigator>
-  </view>
+  <view class="container">
+    <view class="weui-grids">
+        <view class="weui-grid" wx:for="{{routers}}" wx:key="name">
+            <navigator url="{{item.url+'?name='+item.name+'&code='+item.code}}">
+                <view class='weui-grid__bg'>
+                    <view class="weui-grid__icon">
+                        <image src=" {{item.icon}}" mode="scaleToFill" />
+                    </view>
+                    <text class="weui-grid__label">{{item.name}}</text>
+                </view>
+            </navigator>
+        </view>
+    </view>
+</view>
   <button class='ask' bindtap='goToUpload'>上传资源</button>
 </view>
