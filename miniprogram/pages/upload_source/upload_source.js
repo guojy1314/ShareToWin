@@ -1,4 +1,4 @@
-// pages/chat/chat.js
+// miniprogram/pages/upload_source/upload_source.js
 Page({
 
   /**

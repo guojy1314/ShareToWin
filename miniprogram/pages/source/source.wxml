@@ -1,2 +1,72 @@
 <!--pages/source/source.wxml-->
-<text>pages/source/source.wxml</text>
+<view class='container'>
+  <view class="search flex-wrp">
+    <view class="search-left flex-item">
+      <image src="../../images/search.png"></image>
+      <input placeholder="搜索话题, 问题或人" placeholder-class="search-placeholder" />
+    </view>
+    <view class="search-right flex-item" bindtap="upper">
+      <image src="../../images/lighting.png"></image>
+    </view>
+  </view>
+
+  <!-- 9个按钮  -->
+  <view class='class_view_panel'>
+    <navigator class="class_nav top">
+      <view class='class_pic'>
+        <image src='../../images/classify.png'></image>
+      </view>
+      <text>资源</text>
+    </navigator>
+
+    <navigator class="class_nav top">
+      <view class='class_pic'>
+        <image src='../../images/classify.png'></image>
+      </view>
+      <text>资源</text>
+    </navigator>
+    <navigator class="class_nav top">
+      <view class='class_pic'>
+        <image src='../../images/classify.png'></image>
+      </view>
+      <text>资源</text>
+    </navigator>
+    <navigator class="class_nav top">
+      <view class='class_pic'>
+        <image src='../../images/classify.png'></image>
+      </view>
+      <text>资源</text>
+    </navigator>
+    <navigator class="class_nav top">
+      <view class='class_pic'>
+        <image src='../../images/classify.png'></image>
+      </view>
+      <text>资源</text>
+    </navigator>
+    <navigator class="class_nav top">
+      <view class='class_pic'>
+        <image src='../../images/classify.png'></image>
+      </view>
+      <text>资源</text>
+    </navigator>
+    <navigator class="class_nav top">
+      <view class='class_pic'>
+        <image src='../../images/classify.png'></image>
+      </view>
+      <text>资源</text>
+    </navigator>
+    <navigator class="class_nav top">
+      <view class='class_pic'>
+        <image src='../../images/classify.png'></image>
+      </view>
+      <text>资源</text>
+    </navigator>
+    <navigator class="class_nav top">
+      <view class='class_pic'>
+        <image src='../../images/classify.png'></image>
+      </view>
+      <text>资源</text>
+    </navigator>
+  </view>
+  <button class='ask' bindtap='goToUpload'>上传资源</button>
+</view>

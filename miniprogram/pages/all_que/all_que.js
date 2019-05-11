@@ -37,6 +37,11 @@ Page({
       src: info.avatarUrl, //更新图片来源
       nickName: info.nickName //更新昵称
     })
-
+  },
+  //跳转到提问页面
+  goToAsk:function(e){
+    wx.navigateTo({
+      url: '../ask_que/ask_que',
+    })
   }
 })

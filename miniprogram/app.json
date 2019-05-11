@@ -1,12 +1,13 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/chat/chat",
     "pages/me/me",
     "pages/answer/answer",
     "pages/question/question",
     "pages/all_que/all_que",
-    "pages/source/source"
+    "pages/source/source",
+    "pages/ask_que/ask_que",
+    "pages/upload_source/upload_source"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -51,5 +52,6 @@
     "request": 10000,
     "downloadFile": 10000
   },
-  "debug": true
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
 }

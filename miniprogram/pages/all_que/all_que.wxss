@@ -1,35 +1,62 @@
-/* pages/all_que/all_que.wxss */
-/* pages/me/me.wxss */
-.user {
-  width: 725rpx;
-  background: #ffffff;
-  padding: 30rpx 25rpx 30rpx 0;
-  margin: 15rpx 0 0 0;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #dcdcdc;
-  box-shadow: 0 2px 5px #eeeeee;
+/**index.wxss**/
+
+.container {
+  height: 100%;
+  background: #fff;
 }
-.user .userinfo-avatar{
-  flex: 1;
-  display: inline-block;
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 80rpx;
+
+
+.class_view_panel {
+  /* 水平排列, 每行3个, wrap  */
+  display: flex;
+  flex-wrap: wrap;
+  margin: 15rpx 0 30rpx 0;
 }
-.user .user-info{
-  flex: 5;
-  text-align: left;
+ 
+/* 设置nav 33.33%  */
+.class_nav {
+  width: 33.333%;
+  height: 200rpx;
+  
+  /* 必须添加这个  */
+  box-sizing: border-box;
+  
+  /* 设置里面的image 和 text 垂直居中  */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+  /* 文字必须使用像素  */
+  font-size: 16px;
+ 
+  /* 边框必须使用 rpx  */
+  /* 只给右 + 底边 添加边框  */
+  border-right: 1rpx solid #ccc;
+  border-bottom: 1rpx solid #ccc;
 }
-.user .user-info text{
-  display: block;
+/* 最右边的 第3|6|9个不需要边框  
+   即: 3n个子元素
+*/
+.class_view_panel .class_nav:nth-child(3n) {
+  border-right: 0rpx none;
 }
-.user .user-info .userinfo-nickname{
-  padding: 8rpx 0 10rpx 0;
-  font-size: 30rpx;
-  color: #818A8F;
+.top{
+  border-top: 1rpx solid #ccc;
 }
-.user .user-info .edit{
-  font-size: 30rpx;
-  color: #bababa;
-  line-height: 34rpx;
+ 
+ 
+/* 设置图片宽高  */
+/* 第1个 必须使用类名  */
+.class_nav image {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 0 5rpx 0;
 }
+
+.ask{
+  width:66%;
+}
+
+
+/*feed-item part is in app.wxss for multiplexing*/
