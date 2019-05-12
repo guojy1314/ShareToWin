@@ -1,16 +1,16 @@
 <!--pages/me/me.wxml-->
 <view class="container more">
   <view class="user flex-wrp" id='myLogin'>
-    <block wx:if='{{isLogin}}'>
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="userinfo-btn"> 未登录，请点此登陆 </button>
+    <block wx:else>
       <view class="avatar flex-item">
-        <image class="userinfo-avatar" src="{{src}}" background-size="cover"></image>
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
       </view>
       <view class="user-info flex-item">
-        <text class="userinfo-nickname">{{nickName}}</text>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
         <text class="edit">查看或编辑个人主页</text>
       </view>
     </block>
-    <button wx:else open-type='getUserInfo' bindgetuserinfo='getMyInfo'>未登录，请点此登陆</button>
   </view>
 
   <view class="my">
