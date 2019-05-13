@@ -15,6 +15,7 @@ App({
     }
 
     this.globalData = {}
+
   },
   getUserInfo: function (cb) {
     var that = this
@@ -23,18 +24,33 @@ App({
     } else {
       //调用登录接口
       wx.login({
-        success: function () {
+        success: function (result) {
+          code=result.code
           wx.getUserInfo({
             success: function (res) {
               that.globalData.userInfo = res.userInfo
               typeof cb == "function" && cb(that.globalData.userInfo)
             }
           })
+          wx.request({
+            url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx00bf65c5addd64ae&secret=2883261e3545e334510383bc68d2594f&js_code=' + code + '&grant_type=authorization_code',
+            data: {},
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (res2) {
+              that.globalData.openid = res2.data.openid //返回openid
+              typeof cb == "function" && cb(that.globalData.openid)
+            }
+          })
         }
+
       })
     }
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    openid:null,
+    openID:'rua'
   }
 })

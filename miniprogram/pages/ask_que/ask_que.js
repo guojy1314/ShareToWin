@@ -8,7 +8,8 @@ Page({
     source: [],
     bigImg: '../../images/photo.png',
     title: '',
-    date: '',
+    good_nums: '',
+    answer_nums:'',
     type: '',
     detail: '',
     image: '',
@@ -152,7 +153,9 @@ Page({
         //date: e.detail.value.date,
         type: this.data.array[e.detail.value.type],
         detail: e.detail.value.detail,
-        image: this.data.bigImg
+        image: this.data.bigImg,
+        good_nums:0,
+        answer_nums:0
       },
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id

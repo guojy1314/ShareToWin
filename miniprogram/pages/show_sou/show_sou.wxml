@@ -1,3 +1,38 @@
 <!--miniprogram/pages/show_sou/show_sou.wxml-->
-<text>miniprogram/pages/show_sou/show_sou.wxml</text>
-<view style="text-align:center"> {{title}} </view>
+<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+  <view class="search flex-wrp">
+    <view class="search-left flex-item">
+      <image src="../../images/search.png"></image>
+      <input placeholder="搜索问题或资源" placeholder-class="search-placeholder" />
+    </view>
+    <view class="search-right flex-item" bindtap="upper">
+      <image src="../../images/lighting.png"></image>
+    </view>
+  </view>
+
+  <view wx:for="{{sourceList}}" wx:for-item="source" wx:key="{{source._id}}">
+    <view class="feed-item">
+      <view class="feed-content">
+        <view class="question">
+          <text>{{source.title}}</text>
+        </view>
+        <view class="answer-body">
+          <view>
+            <text class="answer-txt">{{source.detail}}</text>
+          </view>
+          <view class="answer-actions">
+            <view class="like dot">
+              <a>100 赞同 </a>
+            </view>
+            <view class="comments dot">
+              <a>200 评论 </a>
+            </view>
+            <view class="follow-it">
+              <a>关注问题</a>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

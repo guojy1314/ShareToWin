@@ -1,45 +1,38 @@
 <!--index.wxml-->
-<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower"  scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
   <view class="search flex-wrp">
-      <view class="search-left flex-item">
-          <image src="../../images/search.png"></image>
-          <input placeholder="搜索话题, 问题或人" placeholder-class="search-placeholder"/>
-      </view>
-      <view class="search-right flex-item" bindtap="upper">
-          <image src="../../images/lighting.png"></image>
-      </view>
+    <view class="search-left flex-item">
+      <image src="../../images/search.png"></image>
+      <input placeholder="搜索话题, 问题或人" placeholder-class="search-placeholder" />
+    </view>
+    <view class="search-right flex-item" bindtap="upper">
+      <image src="../../images/lighting.png"></image>
+    </view>
   </view>
 
-    <view wx:for="{{newsList}}" wx:for-item="news" wx:key="{{news.id}}">
-        <view class="feed-item">
-            <view class="feed-source">
-                    <view class="avatar">
-                        <image src="{{news.feed_source_img}}"></image>
-                    </view>
-                    <text>{{news.feed_source_name}}{{news.feed_source_txt}}</text>
-                <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+  <view wx:for="{{queList}}" wx:for-item="que" wx:key="{{que._id}}">
+    <view class="feed-item">
+        <view class="feed-content">
+          <view class="question" bindtap="goToQuestion" data-id='{{que._id}}'>
+            <text>{{que.title}}</text>
+          </view>
+          <view class="answer-body" bindtap='goToAnswer' data-id='{{que._id}}'>
+            <view>
+              <text class="answer-txt">{{que.detail}}</text>
             </view>
-            <view class="feed-content">
-                <view class="question"  bindtap="goToQuestion" data-id='{{news.question_id}}'>
-                        <text>{{news.question}}</text>
-                </view>
-                <view class="answer-body" bindtap='goToAnswer' data-id='{{news._id}}'>
-                    <view>
-                        <text class="answer-txt">{{news.answer_ctnt}}</text>
-                    </view>
-                    <view class="answer-actions">
-                        <view class="like dot">
-                            <a>{{news.good_num}} 赞同 </a>
-                        </view>
-                        <view class="comments dot">
-                            <a>{{news.comment_num}} 评论 </a>
-                        </view>
-                        <view class="follow-it">
-                            <a>关注问题</a>
-                        </view>
-                    </view>
-                </view>
+            <view class="answer-actions">
+              <view class="like dot">
+                <a>{{que.good_nums}} 赞同 </a>
+              </view>
+              <view class="comments dot">
+                <a>{{que.answer_nums}} 回答 </a>
+              </view>
+              <view class="follow-it">
+                <a>关注问题</a>
+              </view>
             </view>
+          </view>
         </view>
+      </view>
     </view>
 </scroll-view>

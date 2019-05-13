@@ -3,27 +3,23 @@
   <view class="question-wrp">
     <view class="question-item">
       <view class="que-tag">
-        <text class="tag">阅读</text>
-        <text class="tag">电子书</text>
-        <text class="tag">Kindle</text>
-        <text class="tag">书籍</text>
-        <text class="tag">文学</text>
+        <text class="tag">{{queList[0].type}}</text>
       </view>
       <view class="que-title">
-        <text>{{question[0].question}}</text>
+        <text>{{queList[0].title}}</text>
       </view>
       <view class="que-content">
-        WEB前端*不靠谱天气预报员*想做代码小仙女
+        <text>{{queList[0].detail}}</text>
       </view>
       <view class="que-follow">
         <view class="left">
           <view class="watch">
-            <image src="../../images/eye.png"></image>
-            <text>3316</text>
+            <image src="../../images/good.png"></image>
+            <text>{{queList[0].good_nums}}</text>
           </view>
           <view class="comment">
-            <image src="../../images/comment2.png"></image>
-            <text>27</text>
+            <image src="../../images/answer.png"></image>
+            <text>{{queList[0].answer_nums}}</text>
           </view>
         </view>
         <view class="right">
@@ -32,17 +28,13 @@
       </view>
     </view>
     <view class="que-operate flex-wrp">
-      <view class="invite flex-item">
-        <image src="../../images/invite.png"></image>
-        <text>邀请回答</text>
-      </view>
       <view class="write flex-item">
-        <image src="../../images/write.png"></image>
+        <image src="../../images/answerd.png"></image>
         <text>写回答</text>
       </view>
     </view>
   </view>
-  <view wx:for="{{question}}" wx:for-item="que" wx:key="{{que._id}}">
+  <view wx:for="{{answerList}}" wx:for-item="ans" wx:key="{{ans._id}}">
     <view class="feed-item">
       <view class="feed-source">
         <a class="">

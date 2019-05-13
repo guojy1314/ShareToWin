@@ -1,29 +1,32 @@
 //question.js
 var common = require('../../utils/common.js')
 const db = wx.cloud.database()
-const ans = db.collection('share')
+const que = db.collection('share_question')
+const ans = db.collection('share_answer')
 const row = 5
 var page = 0
 
 Page({
   data: {
-    question: []
+    queList: [],
+    answerList: []
   },
 
   onLoad: function(options) {
     //把qid从string转换成number，用于where条件检索
-    let qid = parseInt(options.id)
-    console.log(options.id)
+    // let qid = parseInt(options.id)
+    // console.log(options.id)
+    // console.log(qid)
+    // console.log(typeof(qid))
+    let qid = options.id
     console.log(qid)
-    console.log(typeof(qid))
-    ans.where({
-        question_id: qid
-      })
-      .limit(5).get({
+
+    que.where({
+        _id: qid
+      }).get({
         success: res => {
-          console.log(res)
           this.setData({
-            question: res.data
+            queList: res.data
           })
         }
       })
@@ -76,7 +79,7 @@ Page({
    */
   onReachBottom: function() {
     page++
-    let qid=this.qid
+    let qid = this.qid
     ans.where({
         question_id: qid
       })
