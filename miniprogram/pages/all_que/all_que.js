@@ -1,60 +1,64 @@
 // pages/all_que/all_que.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     routers: [{
-        name: '分类1',
+      name: '信息',
       url: '../show_que/show_que',
         icon: '../../images/classify.png',
         code: '1'
       },
       {
-        name: '分类2',
+        name: '统计',
         url: '../show_que/show_que',
         icon: '../../images/classify.png',
         code: '2'
       },
       {
-        name: '分类3',
+        name: '会计',
         url: '../show_que/show_que',
         icon: '../../images/classify.png',
         code: '3'
       },
       {
-        name: '分类4',
+        name: '金融',
         url: '../show_que/show_que',
         icon: '../../images/classify.png',
         code: '4'
       },
       {
-        name: '分类',
+        name: '管理',
         url: '../show_que/show_que',
         icon: '../../images/classify.png',
         code: '5'
       },
       {
-        name: '分类6',
+        name: '法学',
         url: '../show_que/show_que',
         icon: '../../images/classify.png',
         code: '6'
       },
       {
-        name: '分类7',
+        name: '马克思',
         url: '../show_que/show_que',
         icon: '../../images/classify.png',
         code: '7'
       },
       {
-        name: '分类8',
+        name: '外国语',
         url: '../show_que/show_que',
         icon: '../../images/classify.png',
         code: '8'
       },
       {
-        name: '分类9',
+        name: '其它',
         url: '../show_que/show_que',
         icon: '../../images/classify.png',
         code: '9'
@@ -65,7 +69,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
   },
 
@@ -79,19 +83,42 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-
+  onShow: function (options) {
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {    // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {    // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
   },
-
   // 获取用户信息
-  getMyInfo: function(e) {
-    let info = e.detail.userInfo;
+  getUserInfo: function (e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
     this.setData({
-      isLogin: true, //确认登陆状态
-      src: info.avatarUrl, //更新图片来源
-      nickName: info.nickName //更新昵称
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
     })
   },
+  
   //跳转到提问页面
   goToAsk: function(e) {
     wx.navigateTo({

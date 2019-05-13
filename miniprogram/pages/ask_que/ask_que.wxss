@@ -1,1 +1,59 @@
 /* miniprogram/pages/ask_que.wxss */
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1rpx solid rgb(209, 201, 201);
+  border-top: 1rpx solid rgb(209, 201, 201);
+  padding-left: 30rpx;
+}
+
+.list-item1 {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1rpx solid rgb(209, 201, 201);
+  padding-left: 30rpx;
+}
+
+.list-item2 {
+  display: flex;
+  flex-direction: row;
+  /*border-bottom: 1rpx solid rgb(209, 201, 201);*/
+  padding-left: 30rpx;
+}
+
+.area {
+  margin: 0 auto 30rpx auto;
+  height: 400rpx;
+  border: 1px solid #298de5;
+}
+
+.zi {
+  font-size: 40rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.input {
+  padding-left: 50rpx;
+  padding-top: 20rpx;
+}
+
+.btn {
+  background-color: #298de5;
+  color: white;
+  width: 300rpx;
+  margin: 20rpx auto 0 auto;
+}
+
+.photo {
+  width: 200rpx;
+  height: 200rpx;
+  padding-left: 30rpx;
+}
+
+.pic {
+  width: 100rpx;
+  height: 100rpx;
+  padding-left: 10px;
+}

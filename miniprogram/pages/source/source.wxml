@@ -25,5 +25,8 @@
         </view>
     </view>
 </view>
-  <button class='ask' bindtap='goToUpload'>上传资源</button>
+  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 未登录，请点此登陆 </button>
+  <block wx:else>
+    <button class='ask' bindtap='goToUpload'>上传资源</button>
+  </block>
 </view>

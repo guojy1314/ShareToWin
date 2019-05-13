@@ -13,20 +13,20 @@
   <!-- 9个按钮  -->
   <view class="container">
     <view class="weui-grids">
-        <view class="weui-grid" wx:for="{{routers}}" wx:key="name">
-            <navigator url="{{item.url+'?name='+item.name+'&code='+item.code}}">
-                <view class='weui-grid__bg'>
-                    <view class="weui-grid__icon">
-                        <image src=" {{item.icon}}" mode="scaleToFill" />
-                    </view>
-                    <text class="weui-grid__label">{{item.name}}</text>
-                </view>
-            </navigator>
-        </view>
+      <view class="weui-grid" wx:for="{{routers}}" wx:key="name">
+        <navigator url="{{item.url+'?name='+item.name+'&code='+item.code}}">
+          <view class='weui-grid__bg'>
+            <view class="weui-grid__icon">
+              <image src=" {{item.icon}}" mode="scaleToFill" />
+            </view>
+            <text class="weui-grid__label">{{item.name}}</text>
+          </view>
+        </navigator>
+      </view>
     </view>
-</view>
-    <block wx:if='{{isLogin}}'>
-      <button class='ask' bindtap='goToAsk'>我要提问</button>
-    </block>
-    <button wx:else open-type='getUserInfo' bindgetuserinfo='getMyInfo'>未登录，请点此登陆</button>
+  </view>
+  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 未登录，请点此登陆 </button>
+  <block wx:else>
+    <button class='ask' bindtap='goToAsk'>我要提问</button>
+  </block>
 </view>
