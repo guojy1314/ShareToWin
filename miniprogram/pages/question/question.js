@@ -1,42 +1,77 @@
-//question.js
-var common = require('../../utils/common.js')
-const db = wx.cloud.database()
-const que = db.collection('share_question')
-const ans = db.collection('share_answer')
-const row = 5
-var page = 0
-
+// pages/all_que/all_que.js
+var app = getApp()
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    queList: [],
-    answerList: []
-  },
-
-  onLoad: function(options) {
-    //把qid从string转换成number，用于where条件检索
-    // let qid = parseInt(options.id)
-    // console.log(options.id)
-    // console.log(qid)
-    // console.log(typeof(qid))
-    let qid = options.id
-    console.log(qid)
-
-    que.where({
-        _id: qid
-      }).get({
-        success: res => {
-          this.setData({
-            queList: res.data
-          })
-        }
-      })
+    userInfo: {},
+    userOpenID: '',
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    routers: [{
+      name: '信息',
+      url: '../show_que/show_que',
+        icon: '../../images/classify.png',
+        code: '1'
+      },
+      {
+        name: '统计',
+        url: '../show_que/show_que',
+        icon: '../../images/classify.png',
+        code: '2'
+      },
+      {
+        name: '会计',
+        url: '../show_que/show_que',
+        icon: '../../images/classify.png',
+        code: '3'
+      },
+      {
+        name: '金融',
+        url: '../show_que/show_que',
+        icon: '../../images/classify.png',
+        code: '4'
+      },
+      {
+        name: '管理',
+        url: '../show_que/show_que',
+        icon: '../../images/classify.png',
+        code: '5'
+      },
+      {
+        name: '法学',
+        url: '../show_que/show_que',
+        icon: '../../images/classify.png',
+        code: '6'
+      },
+      {
+        name: '马克思',
+        url: '../show_que/show_que',
+        icon: '../../images/classify.png',
+        code: '7'
+      },
+      {
+        name: '外国语',
+        url: '../show_que/show_que',
+        icon: '../../images/classify.png',
+        code: '8'
+      },
+      {
+        name: '其它',
+        url: '../show_que/show_que',
+        icon: '../../images/classify.png',
+        code: '9'
+      }
+    ]
   },
 
   /**
-   * 自定义函数-跳转到回答详情
+   * 生命周期函数--监听页面加载
    */
-  goToAnswer: function(e) {
-    common.goToAnswer(e.currentTarget.dataset.id)
+  onLoad: function (options) {
+
   },
 
   /**
@@ -49,56 +84,70 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function (options) {
+    if(app.globalData.openid){
+      this.setData({ userOpenID:app.globalData.openid})
+    }
 
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-    page++
-    let qid = this.qid
-    ans.where({
-        question_id: qid
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
       })
-      .skip(page * row).limit(row).get({
+    } else if (this.data.canIUse) {    // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {    // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
         success: res => {
-          let new_data = res.data
-          let old_data = this.data.question
+          app.globalData.userInfo = res.userInfo
           this.setData({
-            question: old_data.concat(new_data)
+            userInfo: res.userInfo,
+            hasUserInfo: true
           })
         }
       })
+    }
+  },
+  // 获取用户信息
+  getUserInfo: function (e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
+  onGetOpenid: function () {
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        console.log('[云函数] [login] user openid: ', res.result.openid)
+        app.globalData.openid = res.result.openid
+        this.setData({
+          userOpenID: res.result.openid
+        })
 
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+
+      }
+    })
+  },
+  
+  //跳转到提问页面
+  goToAsk: function(e) {
+    wx.navigateTo({
+      url: '../ask_que/ask_que',
+    })
   }
-
 })

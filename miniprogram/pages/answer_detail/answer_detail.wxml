@@ -1,0 +1,55 @@
+<!--answer.wxml-->
+<view class="container">
+  <view class="question" bindtap='goToQuestion' data-id='{{queList[0]._id}}'>
+    <text class="question-title">{{queList[0].title}}</text>
+  </view>
+  <view class="answerer-wrp">
+    <view class="bg-half">
+    <view class="answerer flex-wrp">
+      <view class="answerer-info flex-item">
+        <text class="answerer-name">问题详情：</text>
+        <text class="answerer-des">{{queList[0].detail}}</text>
+      </view>
+      <view class="follow flex-item">
+        <text>十 关注</text>
+      </view>
+      </view>
+    </view>
+  </view>
+  <view class="answer-content">
+    <text>{{ansList[0].detail}}</text>
+  </view>
+
+  <view class="answer-footer flex-wrp">
+          <view class="good flex-item">
+            <view class="good-bad">
+                <image src="../../images/good-bad.png"></image>
+            </view>
+            <view class="good-num">2.1k</view>
+        </view>
+    <view class="operation-wrp flex-item">
+      <view class="operation flex-wrp flex-tab">
+        <view class="operation-btn flex-item">
+          <image src="../../images/flag.png"></image>
+          <text>这</text>
+        </view>
+        <view class="operation-btn flex-item">
+          <image src="../../images/heart2.png"></image>
+          <text>是</text>
+        </view>
+        <view class="operation-btn flex-item">
+          <image src="../../images/collect2.png"></image>
+          <text>初</text>
+        </view>
+        <view class="operation-btn flex-item">
+          <image src="../../images/comment.png"></image>
+          <text>稿</text>
+        </view>
+
+      </view>
+    </view>
+
+
+
+  </view>
+</view>

@@ -1,68 +1,32 @@
-<!--question.wxml-->
-<view class="container">
-  <view class="question-wrp">
-    <view class="question-item">
-      <view class="que-tag">
-        <text class="tag">{{queList[0].type}}</text>
-      </view>
-      <view class="que-title">
-        <text>{{queList[0].title}}</text>
-      </view>
-      <view class="que-content">
-        <text>{{queList[0].detail}}</text>
-      </view>
-      <view class="que-follow">
-        <view class="left">
-          <view class="watch">
-            <image src="../../images/good.png"></image>
-            <text>{{queList[0].good_nums}}</text>
-          </view>
-          <view class="comment">
-            <image src="../../images/answer.png"></image>
-            <text>{{queList[0].answer_nums}}</text>
-          </view>
-        </view>
-        <view class="right">
-          关注
-        </view>
-      </view>
+<!--pages/all_que/all_que.wxml-->
+<view class='container'>
+  <view class="search flex-wrp">
+    <view class="search-left flex-item">
+      <image src="../../images/search.png"></image>
+      <input placeholder="搜索话题, 问题或人" placeholder-class="search-placeholder" />
     </view>
-    <view class="que-operate flex-wrp">
-      <view class="write flex-item">
-        <image src="../../images/answerd.png"></image>
-        <text>写回答</text>
+    <view class="search-right flex-item" bindtap="upper">
+      <image src="../../images/lighting.png"></image>
+    </view>
+  </view>
+
+  <!-- 9个按钮  -->
+  <view class="container">
+    <view class="weui-grids">
+      <view class="weui-grid" wx:for="{{routers}}" wx:key="name">
+        <navigator url="{{item.url+'?type='+item.name}}">
+          <view class='weui-grid__bg'>
+            <view class="weui-grid__icon">
+              <image src=" {{item.icon}}" mode="scaleToFill" />
+            </view>
+            <text class="weui-grid__label">{{item.name}}</text>
+          </view>
+        </navigator>
       </view>
     </view>
   </view>
-  <view wx:for="{{answerList}}" wx:for-item="ans" wx:key="{{ans._id}}">
-    <view class="feed-item">
-      <view class="feed-source">
-        <a class="">
-          <view class="avatar">
-            <image src="{{que.feed_source_img}}"></image>
-          </view>
-          <text>{{que.feed_source_name}}</text>
-        </a>
-        <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
-      </view>
-      <view class="feed-content">
-        <view class="answer-body" bindtap='goToAnswer' data-id='{{que._id}}'>
-          <view>
-            <text class="answer-txt">{{que.answer_ctnt}}</text>
-          </view>
-          <view class="answer-actions">
-            <view class="like dot">
-              <a>{{que.good_num}} 赞同 </a>
-            </view>
-            <view class="comments dot">
-              <a>{{que.comment_num}} 评论 </a>
-            </view>
-            <view class="time">
-              <a>2 个月前</a>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
+  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap='onGetOpenid'> 未登录，请点此登陆 </button>
+  <block wx:else>
+    <button class='ask' bindtap='goToAsk'>我要提问</button>
+  </block>
 </view>

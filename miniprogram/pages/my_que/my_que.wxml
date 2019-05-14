@@ -1,14 +1,5 @@
-<!--miniprogram/pages/show_que/show_que.wxml-->
+<!--miniprogram/pages/my_que/my_que.wxml-->
 <scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-  <view class="search flex-wrp">
-    <view class="search-left flex-item">
-      <image src="../../images/search.png"></image>
-      <input placeholder="搜索话题, 问题或人" placeholder-class="search-placeholder" />
-    </view>
-    <view class="search-right flex-item" bindtap="upper">
-      <image src="../../images/lighting.png"></image>
-    </view>
-  </view>
 
   <view wx:for="{{queList}}" wx:for-item="que" wx:key="{{que._id}}">
       <view class="feed-item">
@@ -16,7 +7,7 @@
           <view class="question" bindtap="goToQuestion" data-id='{{que._id}}'>
             <text>{{que.title}}</text>
           </view>
-          <view class="answer-body" bindtap="goToQuestion" data-id='{{que._id}}'>
+          <view class="answer-body">
             <view>
               <text class="answer-txt">{{que.detail}}</text>
             </view>
@@ -24,11 +15,8 @@
               <view class="like dot">
                 <a>{{que.good_nums}} 赞同 </a>
               </view>
-              <view class="comments dot">
-                <a>{{que.answer_nums}} 评论 </a>
-              </view>
               <view class="follow-it">
-                <a>关注问题</a>
+                <a>{{que.answer_nums}} 评论 </a>
               </view>
             </view>
           </view>

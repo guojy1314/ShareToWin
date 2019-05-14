@@ -1,4 +1,6 @@
 // miniprogram/pages/upload_source/upload_source.js
+var app = getApp()
+var common = require('../../utils/common.js')
 Page({
 
   /**
@@ -6,10 +8,10 @@ Page({
    */
   data: {
     source: [],
-    bigImg: '../../images/photo.png',
     title: '',
     date: '',
     type: '',
+    address:'',
     detail: '',
     image: '',
     array: ['请选择问题类别……', '信息', '统计', '会计', '金融', '管理', '法学', '马克思', '外国语', '其它'],
@@ -130,21 +132,26 @@ Page({
   //添加
 
   publish: function(e) {
-    console.log(e)
+    let that = this;
+    var time = common.formatTime(new Date());
+    that.setData({
+      date: time
+    })
     const db = wx.cloud.database()
     db.collection('share_source').add({
       data: {
         title: e.detail.value.title,
-        //date: e.detail.value.date,
         type: this.data.array[e.detail.value.type],
         detail: e.detail.value.detail,
-        image: this.data.bigImg
+        address: e.detail.value.address,
+        good_nums: 0,
+        bad_nums:0
       },
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id
         this.setData({
           title: e.detail.value.title,
-          //date: e.detail.value.date,
+          date: this.data.date,
           type: this.data.array[e.detail.value.type],
           address: e.detail.value.address,
           detail: e.detail.value.detail,

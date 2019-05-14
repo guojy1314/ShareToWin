@@ -1,0 +1,28 @@
+<!--miniprogram/pages/my_sou/my_sou.wxml-->
+<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+
+  <view wx:for="{{souList}}" wx:for-item="sou" wx:key="{{sou._id}}">
+      <view class="feed-item">
+        <view class="feed-content">
+          <view class="question" bindtap="goToSource" data-id='{{sou._id}}'>
+            <text>{{sou.title}}</text>
+          </view>
+          <view class="answer-body">
+            <view>
+              <text class="answer-txt">{{sou.detail}}</text>
+            </view>
+            <view class="answer-actions">
+              <view class="like dot">
+                <a>{{sou.good_nums}} 有用 </a>
+              </view>
+              <view class="follow-it">
+                <a>{{sou.bad_nums}} 没用 </a>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+  </view>
+
+</scroll-view>

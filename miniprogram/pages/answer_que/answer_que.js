@@ -1,6 +1,9 @@
-// miniprogram/pages/ask_que.js
+// miniprogram/pages/answer_que/answer_que.js
 var app = getApp()
 var common = require('../../utils/common.js')
+const db = wx.cloud.database()
+const ans = db.collection('share_answer')
+const que = db.collection('share_question')
 
 Page({
 
@@ -9,79 +12,43 @@ Page({
    */
   data: {
     source: [],
-    bigImg: '../../images/photo.png',
     title: '',
     good_nums: '',
-    answer_nums:'',
-    type: '',
+    answer_nums: '',
     detail: '',
+    q_id: '',
     image: '',
-    array: ['请选择问题类别……', '信息', '统计', '会计', '金融', '管理', '法学', '马克思', '外国语', '其它'],
-    index: 0
+    date:''
   },
 
-  bindPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      index: e.detail.value
-    })
-  },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    let qtitle = options.title
+    let qid = options.id
+    this.setData({
+      title: qtitle,
+      q_id: qid
+    })
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   changeBigImg() {
     let that = this;
     var app = getApp();
@@ -89,7 +56,7 @@ Page({
     wx.chooseImage({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
+      success: function(res) {
         wx.showLoading({
           title: '上传中',
         });
@@ -98,12 +65,12 @@ Page({
         const name = Math.random() * 1000000;
         const cloudPath = name + filePath.match(/\.[^.]+?$/)[0]
         wx.cloud.uploadFile({
-          cloudPath,//云存储图片名字
-          filePath,//临时路径
+          cloudPath, //云存储图片名字
+          filePath, //临时路径
           success: res => {
             console.log('[上传图片] 成功：', res)
             that.setData({
-              bigImg: res.fileID,//云存储图片路径,可以把这个路径存到集合，要用的时候再取出来
+              image: res.fileID, //云存储图片路径,可以把这个路径存到集合，要用的时候再取出来
             });
             let fileID = res.fileID;
             picpath = fileID;
@@ -142,44 +109,41 @@ Page({
 
   //添加
 
-  publish: function (e) {
+  publish: function(e) {
     let that = this;
     var time = common.formatTime(new Date());
     that.setData({
       date: time
     })
-    console.log(e)
-    const db = wx.cloud.database()
-    db.collection('share_question').add({
+    ans.add({
       data: {
         title: e.detail.value.title,
-        date: this.data.date,
-        type: this.data.array[e.detail.value.type],
+        //date: e.detail.value.date,
         detail: e.detail.value.detail,
-        image: this.data.bigImg,
-        good_nums:0,
-        answer_nums:0
+        image: this.data.image,
+        q_id:this.data.q_id,
+        date:this.data.date,
+        good_nums: 0,
+        bad_nums: 0
       },
       success: res => {
-        // 在返回结果中会包含新创建的记录的 _id
-        this.setData({
-          title: e.detail.value.title,
-          //date: e.detail.value.date,
-          type: this.data.array[e.detail.value.type],
-          detail: e.detail.value.detail,
-          image: this.data.bigImg
-        })
         wx.showToast({
-          title: '提问发布成功',
+          title: '回答提交成功',
           duration: 1000,
-          success: function () {
-            setTimeout(function () {
+          success: function() {
+            setTimeout(function() {
               wx.reLaunch({
                 url: '../index/index',
               })
             }, 2000);
           }
         })
+        que.doc(this.data.q_id).update({
+          data:{
+            answer_nums: db.command.inc(1)
+          }
+        })
+        
       },
       fail: err => {
         wx.showToast({

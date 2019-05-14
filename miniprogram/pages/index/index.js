@@ -11,8 +11,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    queList: [],
-    answerList: []
+    queList: {},
+    answerList: {}
   },
 
   /**
@@ -24,6 +24,21 @@ Page({
         // console.log(res.data)
         this.setData({
           queList: res.data
+        })
+        var ansList={}
+        for (var index in res.data){
+          ans.where({
+            q_id: res.data[index]._id
+          }).orderBy('good_nums', 'desc').limit(1).get({
+            success: res => {
+              console.log('success!!!!')
+              console.log(res.data)
+            }
+          })
+
+        }
+        this.setData({
+          answerList:answerList
         })
       }
     })

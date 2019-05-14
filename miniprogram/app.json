@@ -1,15 +1,19 @@
 {
   "pages": [
-    "pages/index/index", 
+    "pages/index/index",
     "pages/me/me",
-    "pages/answer/answer",
+    "pages/answer_detail/answer_detail",
+    "pages/question_detail/question_detail",
     "pages/question/question",
-    "pages/all_que/all_que",
     "pages/source/source",
     "pages/ask_que/ask_que",
     "pages/upload_source/upload_source",
     "pages/show_que/show_que",
-    "pages/show_sou/show_sou"
+    "pages/show_sou/show_sou",
+    "pages/my_que/my_que",
+    "pages/my_sou/my_sou",
+    "pages/my_ans/my_ans",
+    "pages/answer_que/answer_que"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -31,7 +35,7 @@
         "selectedIconPath": "images/discovery_focus.png"
       },
       {
-        "pagePath": "pages/all_que/all_que",
+        "pagePath": "pages/question/question",
         "text": "提问",
         "iconPath": "images/que.png",
         "selectedIconPath": "images/que_focus.png"

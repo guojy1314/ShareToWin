@@ -1,5 +1,7 @@
 // pages/me/me.js
 var app = getApp()
+var common = require('../../utils/common.js')
+
 Page({
 
   /**
@@ -16,7 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    
   },
 
   onShow: function(options) {
@@ -82,6 +84,23 @@ Page({
     })
   },
 
+  goToMyQue: function(e) {
+    wx.navigateTo({
+      url: '../my_que/my_que?id=' + this.data.userOpenID,
+    })
+  },
+
+  goToMyAns: function(e) {
+    wx.navigateTo({
+      url: '../my_ans/my_ans?id=' + this.data.userOpenID,
+    })
+  },
+
+  goToMySou: function(e) {
+    wx.navigateTo({
+      url: '../my_sou/my_sou?id=' + this.data.userOpenID,
+    })
+  }
 
   // 获取用户信息
   // getMyInfo: function (e) {

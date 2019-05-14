@@ -1,0 +1,68 @@
+<!--question.wxml-->
+<view class="container">
+  <view class="question-wrp">
+    <view class="question-item">
+      <view class="que-tag">
+        <text class="tag">{{queList[0].type}}</text>
+      </view>
+      <view class="que-title">
+        <text>{{queList[0].title}}</text>
+      </view>
+      <view class="que-content">
+        <text>{{queList[0].detail}}</text>
+      </view>
+      <view class="que-follow">
+        <view class="left">
+          <view class="watch">
+            <image src="../../images/good.png"></image>
+            <text>{{queList[0].good_nums}}</text>
+          </view>
+          <view class="comment">
+            <image src="../../images/answer.png"></image>
+            <text>{{queList[0].answer_nums}}</text>
+          </view>
+        </view>
+        <view class="right">
+          关注
+        </view>
+      </view>
+    </view>
+    <view class="que-operate flex-wrp">
+      <view class="write flex-item" bindtap='goToAnsQue'>
+        <image src="../../images/answerd.png"></image>
+        <text>写回答</text>
+      </view>
+    </view>
+  </view>
+  <view wx:for="{{answerList}}" wx:for-item="ans" wx:key="{{ans._id}}">
+    <view class="feed-item">
+      <!-- <view class="feed-source">
+        <a class="">
+          <view class="avatar">
+            <image src="{{que.feed_source_img}}"></image>
+          </view>
+          <text>{{que.feed_source_name}}</text>
+        </a>
+        <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+      </view> -->
+      <view class="feed-content">
+        <view class="answer-body" bindtap='goToAnswer' data-id='{{ans._id}}'>
+          <view>
+            <text class="answer-txt">{{ans.detail}}</text>
+          </view>
+          <view class="answer-actions">
+            <view class="like dot">
+              <a>{{ans.good_nums}} 有用 </a>
+            </view>
+            <view class="comments dot">
+              <a>{{ans.bad_nums}} 没用 </a>
+            </view>
+            <view class="time">
+              <a>{{ans.date}}</a>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
