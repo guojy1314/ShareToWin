@@ -25,7 +25,7 @@
       </view>
     </view>
   </view>
-  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 未登录，请点此登陆 </button>
+  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap='onGetOpenid'> 未登录，请点此登陆 </button>
   <block wx:else>
     <button class='ask' bindtap='goToAsk'>我要提问</button>
   </block>

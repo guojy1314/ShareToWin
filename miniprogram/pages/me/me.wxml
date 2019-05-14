@@ -1,7 +1,7 @@
 <!--pages/me/me.wxml-->
 <view class="container more">
   <view class="user flex-wrp" id='myLogin'>
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="userinfo-btn"> 未登录，请点此登陆 </button>
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap='onGetOpenid' class="userinfo-btn"> 未登录，请点此登陆 </button>
     <block wx:else>
       <view class="avatar flex-item">
         <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>

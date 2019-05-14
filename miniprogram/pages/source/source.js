@@ -7,6 +7,7 @@ Page({
    */
   data: {
     userInfo: {},
+    userInfo:'',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     routers: [
@@ -86,6 +87,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (options) {
+    if (app.globalData.openid) {
+      this.setData({ userOpenID: app.globalData.openid })
+    }
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -119,6 +123,26 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+
+  onGetOpenid: function () {
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        console.log('[云函数] [login] user openid: ', res.result.openid)
+        app.globalData.openid = res.result.openid
+        this.setData({
+          userOpenID: res.result.openid
+        })
+
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+
+      }
     })
   },
 

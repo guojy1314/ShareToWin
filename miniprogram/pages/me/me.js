@@ -7,8 +7,7 @@ Page({
    */
   data: {
     userInfo: {},
-    userOpenID:'',
-    openid:'miaomiaomiao',
+    userOpenID: '',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -17,13 +16,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-   
+
   },
 
-  onShow:function(options) {
+  onShow: function(options) {
+    if (app.globalData.openid) {
+      this.setData({
+        userOpenID: app.globalData.openid
+      })
+    }
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
+        userOpenID: app.globalData.openid,
         hasUserInfo: true
       })
     } else if (this.data.canIUse) {    // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -31,14 +37,13 @@ Page({
       app.userInfoReadyCallback = res => {
         this.setData({
           userInfo: res.userInfo,
+          userOpenID: app.globalData.openid,
           hasUserInfo: true
         })
       }
     }
 
-
   },
-
 
 
   /**
@@ -55,7 +60,28 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+
+  onGetOpenid: function() {
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        console.log('[云函数] [login] user openid: ', res.result.openid)
+        app.globalData.openid = res.result.openid
+        this.setData({
+          userOpenID: res.result.openid
+        })
+
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+
+      }
+    })
+  },
+
 
   // 获取用户信息
   // getMyInfo: function (e) {
