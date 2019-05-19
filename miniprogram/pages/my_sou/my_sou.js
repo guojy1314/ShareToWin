@@ -22,12 +22,16 @@ Page({
     let userID = options.id
     sou.where({
       _openid: userID
-    }).limit(5).get({
+    }).get({
       success: res => {
         console.log(res.data)
         this.setData({ souList: res.data })
       }
     })
+  },
+
+  goToSource: function (e) {
+    common.goToSource(e.currentTarget.dataset.id)
   },
 
   /**

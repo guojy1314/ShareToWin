@@ -22,12 +22,20 @@ Page({
     let userID=options.id
     que.where({
       _openid: userID
-    }).limit(5).get({
+    }).get({
       success: res => {
         console.log(res.data)
         this.setData({ queList: res.data })
       }
     })
+  },
+
+  /**
+ * 自定义函数-跳转到问题详情
+ */
+  goToQuestion: function (e) {
+    common.goToQuestion(e.currentTarget.dataset.id)
+    console.log(e.currentTarget.dataset.id)
   },
 
   /**

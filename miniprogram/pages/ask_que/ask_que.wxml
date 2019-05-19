@@ -5,15 +5,8 @@
 <text class='zi'>问题标题</text>
 <input class='input' name='title' placeholder='请输入问题标题' style='padding-left:50rpx;'></input>
 </view>
-<!-- <view class='list-item1'>
-<text class='zi'>活动时间</text>
-<picker mode='date' value='{{selectedProduceDate}}' start='{{startProduceDate}}' end='{{endProduceDate}}' field='day' bindchange='dateChange' name='date'>
-<view style='padding-top:25rpx;padding-left:50rpx'>{{selectedProduceDate}}</view>
-</picker>
-</view> -->
 <view class='list-item1'>
 <text class='zi'>问题类别</text>
-<!--<Select prop-array='{{selectArray}}' name='type' bind:myget='getData'></Select>-->
 <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" name='type'>
 <view style='padding-top:25rpx;padding-left:50rpx'>{{array[index]}}
 </view>
@@ -23,9 +16,6 @@
 <text class='zi'>问题详情</text>
 </view>
 <textarea class='area' placeholder='请输入问题详细描述……' name='detail'></textarea>
-<!-- <view>
-<button bindtap="uploadimg" plain='true' style='background-image:url(/images/image.png);width:160rpx;height:160rpx;border:1rpx solid #ffffff;margin-left:20rpx;margin-top:15rpx'></button>
-</view> -->
 <image class='photo' bindtap='changeBigImg'  src='{{bigImg}}'></image>
 <button class='btn' form-type='submit' >发布</button>
 </form>

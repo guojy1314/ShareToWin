@@ -117,7 +117,7 @@ Page({
     })
     ans.add({
       data: {
-        title: e.detail.value.title,
+        title: this.data.title,
         //date: e.detail.value.date,
         detail: e.detail.value.detail,
         image: this.data.image,
@@ -138,11 +138,16 @@ Page({
             }, 2000);
           }
         })
-        que.doc(this.data.q_id).update({
-          data:{
-            answer_nums: db.command.inc(1)
+        wx.cloud.callFunction({
+          name: 'ans_nums_update',
+          data: {
+            q_id: this.data.q_id
+          },
+          success: res => {
+            console.log('更新数据成功')
           }
         })
+
         
       },
       fail: err => {

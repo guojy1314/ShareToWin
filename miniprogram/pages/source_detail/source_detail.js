@@ -1,8 +1,7 @@
-//answer.js
+// miniprogram/pages/source_detail/source_detail.js
 var common = require('../../utils/common.js')
 const db = wx.cloud.database()
-const ans = db.collection('share_answer')
-const que = db.collection('share_question')
+const sou = db.collection('share_source')
 
 Page({
 
@@ -10,43 +9,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-    queList: {},
-    ansList:{},
-    num: 0,
-    isVote:0,
-    isCollect:0
+    souList: {},
+    isVote: 0,
+    isCollect: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     let id = options.id
-    ans.where({
+    console.log(id)
+    sou.where({
       _id: id
     }).get({
       success: res => {
         this.setData({
-          ansList: res.data
-        })
-        let qid = this.data.ansList[0].q_id
-        console.log(qid)
-        que.where({
-          _id: qid
-        }).get({
-          success: res => {
-            this.setData({
-              queList: res.data
-            })
-          }
+          souList: res.data
         })
       }
     })
-    
+
   },
 
   //添加到收藏夹
-  addFavorites: function(options) {
+  addFavorites: function (options) {
     let article = this.data.article; //获取当前新闻
     wx.setStorageSync(article.question_id, article); //添加到本地缓存
     this.setData({
@@ -54,7 +41,7 @@ Page({
     }); //更新按钮显示
   },
   //取消收藏
-  cancelFavorites: function() {
+  cancelFavorites: function () {
     let article = this.data.article; //获取当前新闻
     wx.removeStorageSync(article.question_id); //从本地缓存删除
     this.setData({
@@ -62,22 +49,15 @@ Page({
     }); //更新按钮显示
   },
 
-  /**
-   * 自定义函数-跳转到问题详情
-   */
-  goToQuestion: function(e) {
-    common.goToQuestion(e.currentTarget.dataset.id)
-  },
-
-  vote:function(e){
+  source_vote: function (e) {
     wx.cloud.callFunction({
-      name: 'vote',
+      name: 'source_vote',
       data: {
         _id: this.data.ansList[0]._id
       },
       success: res => {
         this.setData({
-          isVote:1
+          isVote: 1
         })
         console.log('更新数据成功')
       }
@@ -87,28 +67,28 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
@@ -116,7 +96,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

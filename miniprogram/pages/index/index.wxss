@@ -1,0 +1,8 @@
+.endofPage{
+  text-align: center;
+  margin: 20rpx auto;
+}
+.endofPage text{
+  font-size: 26rpx;
+  color: #8f8f8f;
+}

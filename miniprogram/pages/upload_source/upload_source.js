@@ -144,19 +144,20 @@ Page({
         type: this.data.array[e.detail.value.type],
         detail: e.detail.value.detail,
         address: e.detail.value.address,
+        date: this.data.date,
         good_nums: 0,
         bad_nums:0
       },
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id
-        this.setData({
-          title: e.detail.value.title,
-          date: this.data.date,
-          type: this.data.array[e.detail.value.type],
-          address: e.detail.value.address,
-          detail: e.detail.value.detail,
-          // image: this.data.bigImg
-        })
+        // this.setData({
+        //   title: e.detail.value.title,
+        //   date: this.data.date,
+        //   type: this.data.array[e.detail.value.type],
+        //   address: e.detail.value.address,
+        //   detail: e.detail.value.detail,
+        //   // image: this.data.bigImg
+        // })
         wx.showToast({
           title: '资源发布成功',
           duration: 1000,

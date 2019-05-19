@@ -60,16 +60,13 @@ Page({
   /**
   * 自定义函数-跳转到回答详情
   */
-  goToAnswer: function (e) {
-    common.goToAnswer(e.currentTarget.dataset.id)
+  goToSource: function (e) {
+    common.goToSource(e.currentTarget.dataset.id)
   },
 
   /**
   * 自定义函数-跳转到问题详情
   */
-  goToQuestion: function (e) {
-    common.goToQuestion(e.currentTarget.dataset.id)
-  },
 
 
   /**

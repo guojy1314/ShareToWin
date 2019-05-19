@@ -10,29 +10,30 @@
     </view>
   </view>
 
-  <view wx:for="{{queList}}" wx:for-item="que" wx:key="{{que._id}}">
+  <view wx:for="{{answerList}}" wx:for-item="ans" wx:key="{{ans._id}}">
     <view class="feed-item">
-        <view class="feed-content">
-          <view class="question" bindtap="goToQuestion" data-id='{{que._id}}'>
-            <text>{{que.title}}</text>
+      <view class="feed-content">
+        <view class="question" bindtap="goToQuestion" data-id='{{ans.q_id}}'>
+          <text>{{ans.title}}</text>
+        </view>
+        <view class="answer-body" bindtap='goToAnswer' data-id='{{ans._id}}'>
+          <view>
+            <text class="answer-txt">{{ans.detail}}</text>
           </view>
-          <view class="answer-body" bindtap='goToAnswer' data-id='{{que._id}}'>
-            <view>
-              <text class="answer-txt">{{que.detail}}</text>
+          <view class="answer-actions">
+            <view class="like dot">
+              <a>{{ans.good_nums}} 赞同 </a>
             </view>
-            <view class="answer-actions">
-              <view class="like dot">
-                <a>{{que.good_nums}} 赞同 </a>
-              </view>
-              <view class="comments dot">
-                <a>{{que.answer_nums}} 回答 </a>
-              </view>
-              <view class="follow-it">
-                <a>关注问题</a>
-              </view>
+            <view class="follow-it">
+              <a>回答时间：{{ans.date}}</a>
             </view>
           </view>
         </view>
       </view>
     </view>
+  </view>
 </scroll-view>
+
+<view class='endofPage'>
+  <text>———— · 我们是有底线的 · ————</text>
+</view>

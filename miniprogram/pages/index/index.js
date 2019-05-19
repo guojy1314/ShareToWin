@@ -2,7 +2,7 @@ var common = require('../../utils/common.js')
 const db = wx.cloud.database()
 const que = db.collection('share_question')
 const ans = db.collection('share_answer')
-const row = 5
+const row = 7
 var page = 0
 
 Page({
@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    queList: {},
+    // queList: {},
     answerList: {}
   },
 
@@ -19,29 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    que.orderBy('good_nums', 'desc').limit(5).get({
-      success: res => {
-        // console.log(res.data)
-        this.setData({
-          queList: res.data
-        })
-        var ansList={}
-        for (var index in res.data){
-          ans.where({
-            q_id: res.data[index]._id
-          }).orderBy('good_nums', 'desc').limit(1).get({
-            success: res => {
-              console.log('success!!!!')
-              console.log(res.data)
-            }
-          })
 
-        }
-        this.setData({
-          answerList:answerList
-        })
-      }
-    })
   },
 
   /**
@@ -55,7 +33,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    ans.orderBy('good_nums', 'desc').limit(row).get({
+      success: res => {
+        // console.log(res.data)
+        this.setData({
+          answerList: res.data
+        })
+      }
+    })
   },
 
   /**

@@ -1,18 +1,40 @@
 // miniprogram/pages/my_ans/my_ans.js
+var app = getApp()
+var common = require('../../utils/common.js')
+const db = wx.cloud.database()
+const ans = db.collection('share_answer')
+const row = 5
+var page = 0
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    ansList: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let userID = options.id
+    ans.where({
+      _openid: userID
+    }).get({
+      success: res => {
+        console.log(res.data)
+        this.setData({ ansList: res.data })
+      }
+    })
+  },
+  /**
+ * 自定义函数-跳转到回答详情
+ */
+  goToAnswer: function (e) {
+    common.goToAnswer(e.currentTarget.dataset.id)
+    console.log(e.currentTarget.dataset.id)
   },
 
   /**

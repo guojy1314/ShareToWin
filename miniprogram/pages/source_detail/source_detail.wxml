@@ -1,27 +1,27 @@
-<!--answer.wxml-->
+<!--miniprogram/pages/source_detail/source_detail.wxml-->
 <view class="container-ans">
-  <view class="question" bindtap='goToQuestion' data-id='{{queList[0]._id}}' >
-    <text class="question-title">{{queList[0].title}}</text>
+  <view class="question" data-id='{{souList[0]._id}}'>
+    <text class="question-title">{{souList[0].title}}</text>
   </view>
   <view class="answerer-wrp">
     <view class="bg-half">
       <view class="answerer flex-wrp">
         <view class="answerer-info flex-item">
-          <text class="answerer-name">问题详情：</text>
-          <text class="answerer-des">{{queList[0].detail}}</text>
+          <text class="answerer-name">资源地址：</text>
+          <text class="answerer-des">{{souList[0].address}}</text>
         </view>
       </view>
     </view>
   </view>
   <view class="answer-content">
-    <text>{{ansList[0].detail}}</text>
+    <text>{{souList[0].detail}}</text>
   </view>
 
   <view class="answer-footer flex-wrp">
     <view class="operation-wrp flex-item">
       <view class="operation flex-wrp flex-tab">
         <view class="operation-btn flex-item" >
-          <view wx:if='{{isVote==0}}' bindtap='vote'>
+          <view wx:if='{{isVote==0}}' bindtap='source_vote'>
             <image src="../../images/heart2.png"></image>
             <text>点赞</text>
           </view>

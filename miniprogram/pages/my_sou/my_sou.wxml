@@ -16,7 +16,7 @@
                 <a>{{sou.good_nums}} 有用 </a>
               </view>
               <view class="follow-it">
-                <a>{{sou.bad_nums}} 没用 </a>
+                <a>发布时间：{{sou.date}} </a>
               </view>
             </view>
           </view>

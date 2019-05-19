@@ -16,6 +16,12 @@ function goToQuestion(id) {
   })
 }
 
+function goToSource(id) {
+  wx.navigateTo({
+    url: '../source_detail/source_detail?id=' + id,
+  })
+}
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -35,6 +41,7 @@ const formatNumber = n => {
 module.exports={
   goToAnswer: goToAnswer,
   goToQuestion: goToQuestion,
+  goToSource: goToSource,
   formatTime: formatTime
 }
 //module里面的第一个goToDetai是暴露在外的接口，叫什么名字都行，在别的js中调用的是暴露出来的接口

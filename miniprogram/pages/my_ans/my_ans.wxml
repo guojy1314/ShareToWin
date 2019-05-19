@@ -1,2 +1,28 @@
 <!--miniprogram/pages/my_ans/my_ans.wxml-->
-<text>miniprogram/pages/my_ans/my_ans.wxml</text>
+<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+
+  <view wx:for="{{ansList}}" wx:for-item="ans" wx:key="{{ans._id}}">
+      <view class="feed-item">
+        <view class="feed-content">
+          <view class="question" bindtap="goToAnswer" data-id='{{ans._id}}'>
+            <text>{{ans.title}}</text>
+          </view>
+          <view class="answer-body">
+            <view>
+              <text class="answer-txt">{{ans.detail}}</text>
+            </view>
+            <view class="answer-actions">
+              <view class="like dot">
+                <a>{{ans.good_nums}} 赞同 </a>
+              </view>
+              <view class="follow-it">
+                <a>回答时间：{{ans.date}} </a>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+  </view>
+
+</scroll-view>

@@ -14,16 +14,12 @@
       <view class="que-follow">
         <view class="left">
           <view class="watch">
-            <image src="../../images/good.png"></image>
-            <text>{{queList[0].good_nums}}</text>
+            <text>提问时间：{{queList[0].date}}</text>
           </view>
           <view class="comment">
             <image src="../../images/answer.png"></image>
             <text>{{queList[0].answer_nums}}</text>
           </view>
-        </view>
-        <view class="right">
-          关注
         </view>
       </view>
     </view>
