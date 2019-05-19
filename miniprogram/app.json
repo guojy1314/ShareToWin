@@ -13,7 +13,8 @@
     "pages/my_que/my_que",
     "pages/my_sou/my_sou",
     "pages/my_ans/my_ans",
-    "pages/answer_que/answer_que"
+    "pages/answer_que/answer_que",
+    "pages/source_detail/source_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
