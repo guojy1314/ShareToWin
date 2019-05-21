@@ -18,7 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+
   },
 
   onShow: function(options) {
@@ -100,17 +100,18 @@ Page({
     wx.navigateTo({
       url: '../my_sou/my_sou?id=' + this.data.userOpenID,
     })
+  },
+
+  goToMyColAns: function(e) {
+    wx.navigateTo({
+      url: '../my_col_ans/my_col_ans',
+    })
+  },
+
+  goToMyColSou: function(e) {
+    wx.navigateTo({
+      url: '../my_col_sou/my_col_sou',
+    })
   }
-
-  // 获取用户信息
-  // getMyInfo: function (e) {
-  //   let info = e.detail.userInfo;
-  //   this.setData({
-  //     isLogin: true, //确认登陆状态
-  //     src: info.avatarUrl, //更新图片来源
-  //     nickName: info.nickName //更新昵称
-  //   })
-
-  // }
 
 })

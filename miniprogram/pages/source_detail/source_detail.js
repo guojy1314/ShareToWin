@@ -56,7 +56,7 @@ Page({
 
 
     // 读取所有的文章列表收藏缓存状态
-    var collected_cache = wx.getStorageSync('collected');
+    var collected_cache = wx.getStorageSync('sou_collected');
     // 如果缓存状态存在
     if (collected_cache) {
       // 拿到所有缓存状态中的1个
@@ -72,7 +72,7 @@ Page({
       // 如果所有的缓存状态都不存在 就让不存在的缓存存在
       var collected_cache = {};
       // 既然所有的缓存都不存在，那么当前这个文章点赞的缓存也不存在，我们可以把当前这个文章点赞的缓存值设置为 false
-      wx.setStorageSync('collected', collected_cache);
+      wx.setStorageSync('sou_collected', collected_cache);
     }
 
   },
@@ -115,9 +115,9 @@ Page({
   },
 
   collect: function (e) {
-    var cache = wx.getStorageSync('collected');
+    var cache = wx.getStorageSync('sou_collected');
     cache[this.data.souList[0]._id] = true;
-    wx.setStorageSync('collected', cache);
+    wx.setStorageSync('sou_collected', cache);
     this.setData({
       isCollect: true
     })
@@ -125,9 +125,9 @@ Page({
   },
 
   cancleCollect: function (e) {
-    var cache = wx.getStorageSync('collected');
+    var cache = wx.getStorageSync('sou_collected');
     cache[this.data.souList[0]._id] = false;
-    wx.setStorageSync('collected', cache);
+    wx.setStorageSync('sou_collected', cache);
     this.setData({
       isCollect: false
     })

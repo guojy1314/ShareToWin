@@ -14,7 +14,9 @@
     "pages/my_sou/my_sou",
     "pages/my_ans/my_ans",
     "pages/answer_que/answer_que",
-    "pages/source_detail/source_detail"
+    "pages/source_detail/source_detail",
+    "pages/my_col_ans/my_col_ans",
+    "pages/my_col_sou/my_col_sou"
   ],
   "window": {
     "backgroundTextStyle": "light",
