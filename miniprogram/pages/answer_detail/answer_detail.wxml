@@ -19,28 +19,29 @@
 
   <view class="answer-footer flex-wrp">
     <view class="operation-wrp flex-item">
-      <view class="operation flex-wrp flex-tab">
-        <view class="operation-btn flex-item" >
-          <view wx:if='{{isVote==0}}' bindtap='vote'>
+      <view class="operation flex-wrp flex-tab" wx:if='{{hasUserInfo}}'>
+        <view class="operation-btn flex-item">
+          <view wx:if='{{!isVote}}' bindtap='vote' >
             <image src="../../images/heart2.png"></image>
             <text>点赞</text>
           </view>
-          <view wx:if='{{isVote==1}}'>
+          <view wx:if='{{isVote}}'  bindtap='minusVote'>
             <image src="../../images/heart2_voted.png"></image>
             <text class='selected'>已点赞</text>
           </view>
         </view>
         <view class="operation-btn flex-item">
-          <view wx:if='{{isCollect==0}}'>
+          <view wx:if='{{!isCollect}}' bindtap='collect'>
             <image src="../../images/collect2.png"></image>
             <text>收藏</text>
           </view>
-          <view wx:if='{{isCollect==1}}'>
-            <image src="../../images/collect2.png"></image>
-            <text class='selected'>收藏</text>
+          <view wx:if='{{isCollect}}' bindtap='cancleCollect'>
+            <image src="../../images/collected2.png"></image>
+            <text class='selected'>已收藏</text>
           </view>
         </view>
       </view>
+      <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap='onGetOpenid' class='vbtn'> 点赞收藏请先登录 </button>
     </view>
 
 
