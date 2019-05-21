@@ -32,15 +32,6 @@
   </view>
   <view wx:for="{{answerList}}" wx:for-item="ans" wx:key="{{ans._id}}">
     <view class="feed-item">
-      <!-- <view class="feed-source">
-        <a class="">
-          <view class="avatar">
-            <image src="{{que.feed_source_img}}"></image>
-          </view>
-          <text>{{que.feed_source_name}}</text>
-        </a>
-        <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
-      </view> -->
       <view class="feed-content">
         <view class="answer-body" bindtap='goToAnswer' data-id='{{ans._id}}'>
           <view>
@@ -48,13 +39,13 @@
           </view>
           <view class="answer-actions">
             <view class="like dot">
-              <a>{{ans.good_nums}} 有用 </a>
+              <a>{{ans.good_nums}} 赞同 </a>
             </view>
-            <view class="comments dot">
+            <!-- <view class="comments dot">
               <a>{{ans.bad_nums}} 没用 </a>
-            </view>
+            </view> -->
             <view class="time">
-              <a>{{ans.date}}</a>
+              <a>回复时间：{{ans.date}}</a>
             </view>
           </view>
         </view>

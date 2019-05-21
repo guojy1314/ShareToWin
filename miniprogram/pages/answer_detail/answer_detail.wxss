@@ -9,7 +9,7 @@
 
 .question {
   position: relative;
-  width: 650rpx;
+  width: 100%;
   padding: 40rpx 50rpx 30rpx;
   background: #298de5;
   color: #fff;

@@ -22,13 +22,10 @@
             </view>
             <view class="answer-actions">
               <view class="like dot">
-                <a>{{que.good_nums}} 赞同 </a>
-              </view>
-              <view class="comments dot">
                 <a>{{que.answer_nums}} 评论 </a>
               </view>
               <view class="follow-it">
-                <a>关注问题</a>
+                <a>提问时间：{{que.date}}</a>
               </view>
             </view>
           </view>

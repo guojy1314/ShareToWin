@@ -11,6 +11,7 @@ Page({
   data: {
     queList: [],
     answerList: [],
+    qid:'',
     userOpenID: ''
   },
 
@@ -21,27 +22,30 @@ Page({
     // console.log(qid)
     // console.log(typeof(qid))
     let qid = options.id
+    this.setData({
+      qid:qid
+    })
     console.log(qid)
 
-    que.where({
-      _id: qid
-    }).get({
-      success: res => {
-        this.setData({
-          queList: res.data
-        })
-      }
-    })
+    // que.where({
+    //   _id: qid
+    // }).get({
+    //   success: res => {
+    //     this.setData({
+    //       queList: res.data
+    //     })
+    //   }
+    // })
 
-    ans.where({
-      q_id: qid
-    }).orderBy('good_nums', 'desc').limit(5).get({
-      success: res => {
-        this.setData({
-          answerList: res.data
-        })
-      }
-    })
+    // ans.where({
+    //   q_id: qid
+    // }).orderBy('good_nums', 'desc').limit(5).get({
+    //   success: res => {
+    //     this.setData({
+    //       answerList: res.data
+    //     })
+    //   }
+    // })
   },
 
   /**
@@ -69,6 +73,25 @@ Page({
    */
   onShow: function() {
     // let userOpenID = app.globalData.openid
+    que.where({
+      _id: this.data.qid
+    }).get({
+      success: res => {
+        this.setData({
+          queList: res.data
+        })
+      }
+    })
+
+    ans.where({
+      q_id: this.data.qid
+    }).orderBy('good_nums', 'desc').limit(5).get({
+      success: res => {
+        this.setData({
+          answerList: res.data
+        })
+      }
+    })
   },
 
 

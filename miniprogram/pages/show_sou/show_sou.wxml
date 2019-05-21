@@ -22,7 +22,7 @@
           </view>
           <view class="answer-actions">
             <view class="like dot">
-              <a>{{source.good_nums}} 赞同 </a>
+              <a>{{source.good_nums}} 有用 </a>
             </view>
             <view class="follow-it">
               <a>发布时间：{{source.date}}</a>

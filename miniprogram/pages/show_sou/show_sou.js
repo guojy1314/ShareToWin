@@ -14,7 +14,8 @@ Page({
    */
   data: {
     sourceList: [],
-    title: ''
+    title: '',
+    typed:''
   },
 
   /**
@@ -25,15 +26,10 @@ Page({
     wx.setNavigationBarTitle({
       title: options.type + '类资源',
     })
-
-    source.where({
-      type: typed
-    }).limit(5).get({
-      success: res => {
-        // console.log(res.data)
-        this.setData({ sourceList: res.data })
-      }
+    this.setData({
+      typed:typed
     })
+    
   },
 
   /**
@@ -47,7 +43,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    source.where({
+      type: this.data.typed
+    }).limit(5).get({
+      success: res => {
+        // console.log(res.data)
+        this.setData({ sourceList: res.data })
+      }
+    })
   },
 
   /**
