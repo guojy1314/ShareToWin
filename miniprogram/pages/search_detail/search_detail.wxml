@@ -1,2 +1,104 @@
 <!--miniprogram/pages/search_detail/search_detail.wxml-->
-<text>miniprogram/pages/search_detail/search_detail.wxml</text>
+<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+  <form bindsubmit='search'>
+    <view class="search flex-wrp">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" name='type'>
+        <view class="search-option">{{array[index]}}
+        </view>
+      </picker>
+      <view class="search-left flex-item">
+        <input placeholder=" 搜索问题，回答或资源" placeholder-class="search-placeholder" name="keywords" />
+      </view>
+      <view class="search-right flex-item">
+        <button plain='true' form-type='submit'>
+          <image src="../../images/lighting.png"></image>
+        </button>
+      </view>
+
+    </view>
+  </form>
+
+  <!-- 无输入时的提示 -->
+  <view class='search-notice' wx:if="{{!hasKeyWords}}">
+    <text>{{keywords}}</text>
+  </view>
+
+    <!-- 无结果时的提示 -->
+  <view class='search-notice' wx:if="{{hasKeyWords&&!hasResult}}">
+    <text>{{queResult}}</text>
+  </view>
+
+  <!-- 展示问题查询结果 -->
+  <view wx:if="{{typeIdx==1&&hasResult}}" wx:for="{{dataList}}" wx:for-item="que" wx:key="{{que._id}}">
+    <view class="feed-item">
+      <view class="feed-content">
+        <view class="question" bindtap="goToQuestion" data-id='{{que._id}}'>
+          <text>{{que.title}}</text>
+        </view>
+        <view class="answer-body" bindtap="goToQuestion" data-id='{{que._id}}'>
+          <view>
+            <text class="answer-txt">{{que.detail}}</text>
+          </view>
+          <view class="answer-actions">
+            <view class="like dot">
+              <a>{{que.answer_nums}} 评论 </a>
+            </view>
+            <view class="follow-it">
+              <a>提问时间：{{que.date}}</a>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 展示回答搜索结果 -->
+  <view wx:if="{{typeIdx==2&&hasResult}}" wx:for="{{dataList}}" wx:for-item="ans" wx:key="{{ans._id}}">
+    <view class="feed-item">
+      <view class="feed-content">
+        <view class="question" bindtap="goToAnswer" data-id='{{ans._id}}'>
+          <text>{{ans.title}}</text>
+        </view>
+        <view class="answer-body">
+          <view>
+            <text class="answer-txt">{{ans.detail}}</text>
+          </view>
+          <view class="answer-actions">
+            <view class="like dot">
+              <a>{{ans.good_nums}} 赞同 </a>
+            </view>
+            <view class="follow-it">
+              <a>回答时间：{{ans.date}} </a>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 展示资源查询结果 -->
+  <view wx:if="{{typeIdx==3&&hasResult}}" wx:for="{{dataList}}" wx:for-item="source" wx:key="{{source._id}}">
+    <view class="feed-item">
+      <view class="feed-content" bindtap='goToSource' data-id='{{source._id}}'>
+        <view class="question">
+          <text>{{source.title}}</text>
+        </view>
+        <view class="answer-body">
+          <view>
+            <text class="answer-txt">{{source.detail}}</text>
+          </view>
+          <view class="answer-actions">
+            <view class="like dot">
+              <a>{{source.good_nums}} 有用 </a>
+            </view>
+            <view class="follow-it">
+              <a>发布时间：{{source.date}}</a>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+</scroll-view>

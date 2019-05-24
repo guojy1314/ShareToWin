@@ -10,7 +10,7 @@
 	},
 	"appid": "wx00bf65c5addd64ae",
 	"projectname": "ShareToWin",
-	"libVersion": "2.2.5",
+	"libVersion": "2.7.0",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {

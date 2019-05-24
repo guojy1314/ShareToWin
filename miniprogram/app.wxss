@@ -122,8 +122,7 @@
 }
 
 .container .feed-item .feed-content .answer-body {
-  /* padding: 0rpx 0 0 0; */
-  /*height: 10rpx;*/
+  /* padding: 0rpx 0 0 0; *//*height: 10rpx;*/
   font-size: 24rpx;
   line-height: 28rpx;
   color: #5b5b5b;
@@ -153,10 +152,9 @@
   background: #2a8ce5;
   align-items: center;
   justify-content: center;
-
 }
 
-.container .search .search-option{
+.container .search .search-option {
   width: 66rpx;
   flex: 1;
   color: #8ccefd;
@@ -181,18 +179,26 @@
   color: #8ccefd;
   line-height: 35rpx;
   font-size: 26rpx;
-  border-radius:25px;
+  border-radius: 25px;
 }
 
-.container .search .search-left image {
+/* .container .search .search-left image {
   display: inline-block;
   width: 35rpx;
   height: 35rpx;
   padding: 15rpx 15rpx 15rpx 20rpx;
-}
+} */
 
 .container .search .search-right {
   flex: 1;
+}
+
+.container .search .search-right button {
+  padding: 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container .search .search-right image {
