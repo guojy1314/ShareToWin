@@ -15,11 +15,11 @@ Page({
     answerList: {},
     array: ['问题', '回答', '资源'],
     index: 0,
-    type:'',
-    keywords:''
+    type: '',
+    keywords: ''
   },
 
-  bindPickerChange: function (e) {
+  bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: e.detail.value
@@ -93,10 +93,10 @@ Page({
   //   })
   // },
 
-  search: function (e) {
+  search: function(e) {
     wx.navigateTo({
       url: '../search_detail/search_detail?type=' + this.data.array[e.detail.value.type] + '&&keywords=' + e.detail.value.keywords
     })
-      }
-      
+  }
+
 })

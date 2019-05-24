@@ -7,12 +7,16 @@ Page({
    */
   data: {
     userInfo: {},
+    array: ['问题', '回答', '资源'],
+    index: 0,
+    type: '',
+    keywords: '',
     userOpenID: '',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     routers: [{
-      name: '信息',
-      url: '../show_que/show_que',
+        name: '信息',
+        url: '../show_que/show_que',
         icon: '../../images/classify.png',
         code: '1'
       },
@@ -67,10 +71,23 @@ Page({
     ]
   },
 
+  bindPickerChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+  },
+
+  search: function(e) {
+    wx.navigateTo({
+      url: '../search_detail/search_detail?type=' + this.data.array[e.detail.value.type] + '&&keywords=' + e.detail.value.keywords
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
   },
 
@@ -84,9 +101,11 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function (options) {
-    if(app.globalData.openid){
-      this.setData({ userOpenID:app.globalData.openid})
+  onShow: function(options) {
+    if (app.globalData.openid) {
+      this.setData({
+        userOpenID: app.globalData.openid
+      })
     }
 
     if (app.globalData.userInfo) {
@@ -115,7 +134,7 @@ Page({
     }
   },
   // 获取用户信息
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -124,7 +143,7 @@ Page({
     })
   },
 
-  onGetOpenid: function () {
+  onGetOpenid: function() {
     // 调用云函数
     wx.cloud.callFunction({
       name: 'login',
@@ -143,7 +162,7 @@ Page({
       }
     })
   },
-  
+
   //跳转到提问页面
   goToAsk: function(e) {
     wx.navigateTo({

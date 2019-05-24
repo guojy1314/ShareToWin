@@ -1,14 +1,23 @@
 <!--pages/source/source.wxml-->
-<view class='container'>
-  <view class="search flex-wrp">
-    <view class="search-left flex-item">
-      <image src="../../images/search.png"></image>
-      <input placeholder="搜索话题, 问题或人" placeholder-class="search-placeholder" />
+<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+  <form bindsubmit='search'>
+    <view class="search flex-wrp">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" name='type'>
+        <view class="search-option">{{array[index]}}
+        </view>
+      </picker>
+      <view class="search-left flex-item">
+        <input placeholder=" 搜索问题，回答或资源" placeholder-class="search-placeholder" name="keywords" />
+      </view>
+      <view class="search-right flex-item">
+        <button plain='true' form-type='submit'>
+          <image src="../../images/lighting.png"></image>
+        </button>
+      </view>
+
     </view>
-    <view class="search-right flex-item" bindtap="upper">
-      <image src="../../images/lighting.png"></image>
-    </view>
-  </view>
+  </form>
+</scroll-view>
 
   <!-- 9个按钮  -->
   <view class="container">
@@ -24,7 +33,6 @@
             </navigator>
         </view>
     </view>
-</view>
   <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap='onGetOpenid'> 未登录，请点此登陆 </button>
   <block wx:else>
     <button class='ask' bindtap='goToUpload'>上传资源</button>

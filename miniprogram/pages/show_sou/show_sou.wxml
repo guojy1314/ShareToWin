@@ -1,14 +1,22 @@
 <!--miniprogram/pages/show_sou/show_sou.wxml-->
 <scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-  <view class="search flex-wrp">
-    <view class="search-left flex-item">
-      <image src="../../images/search.png"></image>
-      <input placeholder="搜索问题或资源" placeholder-class="search-placeholder" />
+  <form bindsubmit='search'>
+    <view class="search flex-wrp">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" name='type'>
+        <view class="search-option">{{array[index]}}
+        </view>
+      </picker>
+      <view class="search-left flex-item">
+        <input placeholder=" 搜索问题，回答或资源" placeholder-class="search-placeholder" name="keywords" />
+      </view>
+      <view class="search-right flex-item">
+        <button plain='true' form-type='submit'>
+          <image src="../../images/lighting.png"></image>
+        </button>
+      </view>
+
     </view>
-    <view class="search-right flex-item" bindtap="upper">
-      <image src="../../images/lighting.png"></image>
-    </view>
-  </view>
+  </form>
 
   <view wx:for="{{sourceList}}" wx:for-item="source" wx:key="{{source._id}}">
     <view class="feed-item">

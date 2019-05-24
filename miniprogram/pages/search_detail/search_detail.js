@@ -144,6 +144,40 @@ Page({
 
   },
 
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+  },
+  /**
+   * 自定义函数-跳转到回答详情
+   */
+  goToAnswer: function (e) {
+    common.goToAnswer(e.currentTarget.dataset.id)
+    console.log(e.currentTarget.dataset.id)
+  },
+
+  /**
+   * 自定义函数-跳转到问题详情
+   */
+  goToQuestion: function (e) {
+    common.goToQuestion(e.currentTarget.dataset.id)
+    console.log(e.currentTarget.dataset.id)
+  },
+
+  goToSource: function (e) {
+    common.goToSource(e.currentTarget.dataset.id)
+  },
+
+  search: function (e) {
+    this.setData({
+      type: this.data.array[e.detail.value.type],
+      keywords: e.detail.value.keywords
+    })
+    this.onShow()
+  },
+
   /**
    * 生命周期函数--监听页面隐藏
    */

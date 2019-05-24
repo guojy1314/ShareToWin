@@ -8,6 +8,10 @@ Page({
   data: {
     userInfo: {},
     userInfo:'',
+    array: ['问题', '回答', '资源'],
+    index: 0,
+    type: '',
+    keywords: '',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     routers: [
@@ -68,6 +72,20 @@ Page({
     ]
 
   },
+
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+  },
+
+  search: function (e) {
+    wx.navigateTo({
+      url: '../search_detail/search_detail?type=' + this.data.array[e.detail.value.type] + '&&keywords=' + e.detail.value.keywords
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
