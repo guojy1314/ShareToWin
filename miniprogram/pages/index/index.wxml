@@ -1,14 +1,19 @@
 <!--index.wxml-->
 <scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+<form bindsubmit='search'>
   <view class="search flex-wrp">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" name='type'>
+        <view class="search-option">{{array[index]}}
+        </view>
+      </picker>
     <view class="search-left flex-item">
-      <image src="../../images/search.png"></image>
-      <input placeholder="搜索话题, 问题或人" placeholder-class="search-placeholder" />
+      <input placeholder=" 搜索问题，回答或资源" placeholder-class="search-placeholder" name="keywords"/>
     </view>
-    <view class="search-right flex-item" bindtap="upper">
+    <view class="search-right flex-item" form-type='search'>
       <image src="../../images/lighting.png"></image>
     </view>
   </view>
+</form>
 
   <view wx:for="{{answerList}}" wx:for-item="ans" wx:key="{{ans._id}}">
     <view class="feed-item">

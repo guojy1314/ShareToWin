@@ -1,21 +1,21 @@
 <!--miniprogram/pages/ask_que.wxml-->
 <!-- <text>miniprogram/pages/faqitiwen/faqitiwen.wxml</text> -->
 <form bindsubmit='publish'>
-<view class='list-item'>
-<text class='zi'>问题标题</text>
-<input class='input' name='title' placeholder='请输入问题标题' style='padding-left:50rpx;'></input>
-</view>
-<view class='list-item1'>
-<text class='zi'>问题类别</text>
-<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" name='type'>
-<view style='padding-top:25rpx;padding-left:50rpx'>{{array[index]}}
-</view>
-</picker>
-</view>
-<view class='list-item2'>
-<text class='zi'>问题详情</text>
-</view>
-<textarea class='area' placeholder='请输入问题详细描述……' name='detail'></textarea>
-<image class='photo' bindtap='changeBigImg'  src='{{bigImg}}'></image>
-<button class='btn' form-type='submit' >发布</button>
+  <view class='list-item'>
+    <text class='zi'>问题标题</text>
+    <input class='input' name='title' placeholder='请输入问题标题' style='padding-left:50rpx;'></input>
+  </view>
+  <view class='list-item1'>
+    <text class='zi'>问题类别</text>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" name='type'>
+      <view style='padding-top:25rpx;padding-left:50rpx'>{{array[index]}}
+      </view>
+    </picker>
+  </view>
+  <view class='list-item2'>
+    <text class='zi'>问题详情</text>
+  </view>
+  <textarea class='area' placeholder='请输入问题详细描述……' name='detail'></textarea>
+  <image class='photo' bindtap='changeBigImg' src='{{bigImg}}'></image>
+  <button class='btn' form-type='submit'>发布</button>
 </form>

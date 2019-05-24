@@ -27,8 +27,8 @@ Page({
       }
       console.log(colList)
       var colresult = [];
+      var id = 0
       for (let i of colList) {
-        var id = 0
         ans.where({
           _id: i
         }).get({

@@ -12,9 +12,19 @@ Page({
    */
   data: {
     // queList: {},
-    answerList: {}
+    answerList: {},
+    array: ['问题', '回答', '资源'],
+    index: 0,
+    type:'',
+    keywords:''
   },
 
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -70,24 +80,23 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-    page++
-    que.skip(page * row).limit(row).get({
-      success: res => {
-        let new_data = res.data
-        let old_data = this.data.queList
-        this.setData({
-          queList: old_data.concat(new_data)
-        })
-      }
+  // onReachBottom: function() {
+  //   page++
+  //   que.skip(page * row).limit(row).get({
+  //     success: res => {
+  //       let new_data = res.data
+  //       let old_data = this.data.queList
+  //       this.setData({
+  //         queList: old_data.concat(new_data)
+  //       })
+  //     }
+  //   })
+  // },
+
+  search: function (e) {
+    wx.navigateTo({
+      url: '../search_detail/search_detail?type=' + this.data.array[e.detail.value.type] + '&&keywords=' + e.detail.value.keywords
     })
-  },
-
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
+      }
+      
 })

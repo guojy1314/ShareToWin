@@ -1,47 +1,18 @@
-// miniprogram/pages/my_col_sou/my_col_sou.js
-
-var app = getApp()
-var common = require('../../utils/common.js')
-const db = wx.cloud.database()
-const sou = db.collection('share_source')
-
+// miniprogram/pages/search_detail/search_detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    souList: {}
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var collect = wx.getStorageSync('sou_collected');
-    if (collect) {
-      var colList = [];
-      for (var idx in collect) {
-        if (collect[idx]) {
-          colList.push(idx)
-        }
-      }
-      console.log(colList)
-      var colresult = [];
-      var id = 0
-      for (let i of colList) {
-        sou.where({
-          _id: i
-        }).get({
-          success: res => {
-            this.setData({
-              [`souList[${id}]`]: res.data[0]
-            });
-            id++;
-          }
-        })
-      }
-    }
+
   },
 
   /**
@@ -58,9 +29,6 @@ Page({
 
   },
 
-  goToSource: function (e) {
-    common.goToSource(e.currentTarget.dataset.id)
-  },
   /**
    * 生命周期函数--监听页面隐藏
    */
